@@ -1,0 +1,16 @@
+.NavBarButton {
+  background-color: #14274e;
+  color: #FFFFFF;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  height: 50px;
+  display: flex;
+  outline-style: solid;
+  outline-color: #000000;
+  outline-width: 2px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}

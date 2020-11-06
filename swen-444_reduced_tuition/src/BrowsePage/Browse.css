@@ -1,0 +1,174 @@
+.Searchbar {
+    position: absolute;
+    color: #FFFFFF;
+    width: 506px;
+    height: 27px;
+    top: 1000px;
+    left: 1000px;
+}
+
+.FeatureBox{
+    background-color: #9BA4B4;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin: auto;
+    padding: 10px;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.Content
+{
+    height: 540px;
+    overflow: auto;
+    background: #fff;
+}
+
+.whiteTextHeader
+{
+    color: #fff;
+    text-align: center;
+}
+
+.whiteTextUser
+{
+    color: #fff;
+}
+
+.Users
+{
+    justify-content: left;
+}
+
+.UsersPosts
+{
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    background: #394867;
+}
+
+.Post
+{
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    width: 100%;
+}
+
+.Img
+{
+    height: 35px;
+}
+
+.ImgPost
+{
+    height: 200px;
+    width: 100%;
+}
+
+.Button_Post
+{
+    background-color: #394867;
+    color: #FFFFFF;
+    border-color: #394867;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    width: 200px;
+    height: 40px;
+    justify-content: center;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.IndividualPost
+{
+    margin-left: 5%;
+    margin-bottom: 20%;
+}
+
+.Button_Follow
+{
+    background-color: #394867;
+    color: #FFFFFF;
+    border-color: #394867;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    width: 200px;
+    height: 40px;
+    justify-content: center;
+    display: inline-block;
+    border-radius: 10px;
+}
+.Button_Search
+{
+    background-color: #394867;
+    color: #FFFFFF;
+    border-color: #394867;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    width: 100px;
+    height: 27px;
+    justify-content: center;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.SearchIndent
+{
+    padding-left: 20px;
+}
+
+.chip{
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+    padding: 0 13px;
+    margin-bottom: 5px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
+    border-radius: 20px;
+    color: #F1F6F9;
+    background-color: #14274e;
+}
+
+.RightPanel{
+    padding: 25px;
+    align-items: center;
+}
+
+.SubBoxText{
+    color: #14274e;
+    font-size: 28px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
+    padding: 5px;
+    padding-left: 15px;
+}
+
+.IncludeExcludeText{
+    color: #14274e;
+    font-size: 16px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
+    padding: 5px;
+    padding-left: 15px;
+}
+
+.imageButton{
+    justify-content: center;
+    background-color: #394867;
+    border-color: #9BA4B4;
+    color: #F1F6F9;
+    padding: 0px;
+    margin: 7px;
+    border-radius: 0px;
+}

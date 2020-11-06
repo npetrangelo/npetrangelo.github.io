@@ -1,0 +1,92 @@
+.LeftSettings {
+  min-height: 95vh;
+  padding: 10px 10px 10px 10px;
+  align-items: center;
+}
+
+.SettingCategories {
+  padding-bottom: 60vh;
+  background-color: #9BA4B4;
+  margin: 20px 20px 20px 20px;
+  height: 85vh;
+}
+
+.Category:focus, .Category:active, .Category:hover {
+  outline: none !important;
+  box-shadow: none;
+  background-color: #8F8F8F;
+  color: #000000;
+}
+
+.Category {
+  background-color: #EBEBEB;
+  color: #000000;
+  text-align: left;
+  width: 100%;
+  border-width: 0;
+  border-radius: 0 0 0 0;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-style: normal;
+  padding: 10px 10px 10px 10px
+}
+
+.RightSettings { 
+  min-height: 95vh;
+  padding: 10px 10px 10px 10px;
+}
+
+.SettingPanel {
+  padding-bottom: 60vh;
+  background-color: #9BA4B4;
+  margin: 20px 20px 20px 20px;
+  height: 85vh;
+  overflow-y: scroll;
+}
+
+.Setting {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-style: normal;
+}
+
+.SettingTitle {
+  background-color: #EBEBEB;
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  font-size: 6mm;
+}
+
+.SettingContent {
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+}
+
+.SettingButton:focus, .SettingButton:active, .SettingButton:hover {
+  outline: none !important;
+  box-shadow: none;
+  background-color: #8F8F8F;
+  color: #000000;
+}
+
+.SettingSubWindow {
+  background-color: #EBEBEB;
+  width: 100%;
+  padding: 5px 5px 5px 5px;
+  font-size: 4mm; 
+}
+
+.SettingButton {
+  background-color: #EBEBEB;
+  color: #000000;
+  text-align: left;
+  border-width: 0;
+  border-radius: 0 0 0 0;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-style: normal;
+  padding: 10px 10px 10px 10px 
+}
+
+.SettingInput, .SettingInput:active {
+  outline: none !important;
+  box-shadow: none;
+  border: 0;
+}

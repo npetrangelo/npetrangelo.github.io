@@ -1,0 +1,44 @@
+.Panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 650px;
+}
+
+.Title {
+    float: top;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 72px;
+    color: #14274E;
+}
+
+.Image {
+    float: inside;
+}
+
+.ButtonPanel {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.Button {
+    background-color: #394867;
+    color: #FFFFFF;
+    border-color: #394867;
+    border-radius: 15px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    width: 165px;
+    height: 39px;
+    display: flex;
+}

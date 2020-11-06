@@ -1,0 +1,35 @@
+.Panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 650px;
+}
+
+.InputField {
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.Form {
+    text-align: left;
+}
+
+.LoginButton {
+    width: 75%;
+    margin: auto;
+    float: center;
+    background-color: #394867;
+    color: #FFFFFF;
+    border-color: #394867;
+    border-radius: 15px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}

@@ -1,0 +1,35 @@
+.FeatureBox {
+    background-color: #9BA4B4;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin: auto;
+    padding: 25px;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.LeftPanel {
+    padding: 25px;
+    align-items: center;
+}
+
+.RightPanel {
+    padding: 25px;
+    align-items: center;
+}
+
+.Button {
+    background-color: #394867;
+    color: #FFFFFF;
+    border-color: #394867;
+    border-radius: 15px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    width: 165px;
+    height: 39px;
+    display: flex;
+}

@@ -1,0 +1,132 @@
+.LeftPanel{
+    padding: 25px;
+    align-items: center;
+}
+
+.CenterPanel{
+    padding: 25px;
+    align-items: center;
+}
+
+.RightPanel{
+    padding: 25px;
+    align-items: center;
+}
+
+.SubPage {
+    background-color: #F1F6F9;
+    display: flex;
+    padding: 30px;
+    padding-top: 70px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.SubBox{
+    background-color: #9BA4B4;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin: auto;
+    padding: 5px;
+}
+
+.FeatureBox{
+    background-color: #9BA4B4;
+    align-items: center;
+    text-align: left;
+    align-content: center;
+    margin: auto;
+    padding: 10px;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.FeatureImages{
+    margin-bottom: 10px;
+    margin-left: 0px;
+    align-content: center;
+    align-items: center;
+}
+
+.SubBoxText{
+    color: #14274e;
+    font-size: 28px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    padding: 5px;
+    padding-left: 15px;
+}
+
+.TitleText{
+    color: #14274e;
+    font-size: 35px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.buttonSpacer{
+    margin: 10px;
+}
+
+.textSpacer{
+    margin-top: 10px;
+    margin-bottom: 100px;
+}
+
+.rowSpacer{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.chip{
+    width: 200px;
+    display: inline-block;
+    padding: 0 13px;
+    margin-bottom: 5px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
+    border-radius: 20px;
+    color: #F1F6F9;
+    background-color: #14274e;
+}
+
+.closebtn {
+    padding-left: 10px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 16px;
+    cursor: pointer;
+}
+  
+.closebtn:hover {
+    color: white;
+}
+
+.profileButton {
+    background-color: #394867;
+    color: #FFFFFF;
+    border-color: #394867;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    width: 200px;
+    height: 40px;
+    justify-content: center;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.imageButton{
+    justify-content: center;
+    background-color: #394867;
+    border-color: #9BA4B4;
+    color: #F1F6F9;
+    padding: 0px;
+    margin: 7px;
+    border-radius: 0px;
+}
+

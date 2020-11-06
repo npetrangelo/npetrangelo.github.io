@@ -1,0 +1,90 @@
+.Searchbar {
+    position: absolute;
+    color: #FFFFFF;
+    width: 506px;
+    height: 27px;
+    top: 1000px;
+    left: 1000px;
+}
+
+.FixedHeightContainer
+{
+    float: right;
+    height: 595px;
+    width: 250px; 
+    padding: 3px; 
+    background: #394867;
+}
+
+.Content
+{
+    height: 540px;
+    overflow: auto;
+    background: #fff;
+}
+
+.whiteTextHeader
+{
+    color: #fff;
+    text-align: center;
+}
+
+.whiteTextUser
+{
+    color: #fff;
+}
+
+.Users
+{
+    justify-content: left;
+}
+
+.UsersPosts
+{
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    background: #394867;
+}
+
+.Post
+{
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    width: 100%;
+}
+
+.Img
+{
+    height: 35px;
+}
+
+.ImgPost
+{
+    height: 200px;
+    width: 100%;
+}
+
+.Button_Post
+{
+    width: 100%;
+}
+
+.IndividualPost
+{
+    margin-left: 5%;
+    margin-bottom: 20%;
+}
+
+.Button_Follow
+{
+    width: 100%;
+}
+
+.SearchIndent
+{
+    padding-left: 20px;
+}
+
+
