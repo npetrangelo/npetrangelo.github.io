@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6b4c2253.chunk.css",
+    "main.js": "/static/js/main.3b052631.chunk.js",
+    "main.js.map": "/static/js/main.3b052631.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.574304e7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.574304e7.js.map",
+    "static/css/2.3cf5d70f.chunk.css": "/static/css/2.3cf5d70f.chunk.css",
+    "static/js/2.b77f9ef6.chunk.js": "/static/js/2.b77f9ef6.chunk.js",
+    "static/js/2.b77f9ef6.chunk.js.map": "/static/js/2.b77f9ef6.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.9228442da7fbffa4b005c8723054e727.js": "/precache-manifest.9228442da7fbffa4b005c8723054e727.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.3cf5d70f.chunk.css.map": "/static/css/2.3cf5d70f.chunk.css.map",
+    "static/css/main.6b4c2253.chunk.css.map": "/static/css/main.6b4c2253.chunk.css.map",
+    "static/js/2.b77f9ef6.chunk.js.LICENSE.txt": "/static/js/2.b77f9ef6.chunk.js.LICENSE.txt",
+    "static/media/ABC.jpg": "/static/media/ABC.cfac6492.jpg",
+    "static/media/Dino_Nugs.jpg": "/static/media/Dino_Nugs.8424d7b4.jpg",
+    "static/media/colorful-acrylic-paintings.jpg": "/static/media/colorful-acrylic-paintings.cf45976f.jpg",
+    "static/media/download.jfif": "/static/media/download.41618d21.jfif",
+    "static/media/images.jfif": "/static/media/images.ffb91e1d.jfif",
+    "static/media/images2.jfif": "/static/media/images2.f26332bf.jfif",
+    "static/media/images3.jfif": "/static/media/images3.05e75e89.jfif",
+    "static/media/img1.jpg": "/static/media/img1.2be2c7b0.jpg",
+    "static/media/img2.jpg": "/static/media/img2.5f137293.jpg",
+    "static/media/img3.jpg": "/static/media/img3.ed010030.jpg",
+    "static/media/img4.jpg": "/static/media/img4.df4149df.jpg",
+    "static/media/img5.jpg": "/static/media/img5.9b718666.jpg",
+    "static/media/img6.jpg": "/static/media/img6.c8e6f38a.jpg",
+    "static/media/kachow.jpg": "/static/media/kachow.8d8554ef.jpg",
+    "static/media/mountain-painting-chip-stoutus.jpg": "/static/media/mountain-painting-chip-stoutus.a2806e7d.jpg",
+    "static/media/post1.jpg": "/static/media/post1.012f1626.jpg",
+    "static/media/post2.jpg": "/static/media/post2.d1914527.jpg",
+    "static/media/post6.jpg": "/static/media/post6.67290891.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.574304e7.js",
+    "static/css/2.3cf5d70f.chunk.css",
+    "static/js/2.b77f9ef6.chunk.js",
+    "static/css/main.6b4c2253.chunk.css",
+    "static/js/main.3b052631.chunk.js"
+  ]
+}
