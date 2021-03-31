@@ -91,6 +91,7 @@ function addCircle(center, radius, radialdivision, up) {
     let a = vectors[angles.length-1];
     let b = vectors[0];
     addTriangleV(center, a, b);
+    return vectors;
 }
 
 //
@@ -101,8 +102,16 @@ function addCircle(center, radius, radialdivision, up) {
 //heightdivision.
 //
 function makeCylinder(radialdivision, heightdivision) {
-    addCircle(new Vector(0,0,0.5), 0.5, radialdivision, true);
+    let vectors = addCircle(new Vector(0,0,0.5), 0.5, radialdivision, true);
     addCircle(new Vector(0,0,-0.5), 0.5, radialdivision, false);
+    for (let i = 0; i < vectors.length - 1; i++) {
+        let a = vectors[i];
+        let b = vectors[i+1];
+        makeParallelogram(a, a.add(new Vector(0,0,-1)), b, heightdivision, 1);
+    }
+    let a = vectors[vectors.length-1];
+    let b = vectors[0];
+    makeParallelogram(a, a.add(new Vector(0,0,-1)), b, heightdivision, 1);
 }
 
 
