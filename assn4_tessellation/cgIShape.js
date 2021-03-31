@@ -66,8 +66,7 @@ function makeCube(subdivisions) {
     let j_hat = new Vector(0.0,1.0,0.0);
     let k_hat = new Vector(0.0,0.0,1.0);
     let v0 = new Vector(-0.5, -0.5, -0.5);
-    //addQuad(-0.5,-0.5,-0.5,0.5,-0.5,-0.5,0.5,0.5,-0.5,-0.5,0.5,-0.5);
-    //addQuad(-0.5,-0.5,-0.5,0.5,-0.5,-0.5,0.5,0.5,-0.5,-0.5,0.5,-0.5);
+
     makeParallelogram(v0.add(origin), v0.add(i_hat), v0.add(j_hat), subdivisions, subdivisions);
     makeParallelogram(v0.add(origin), v0.add(j_hat), v0.add(k_hat), subdivisions, subdivisions);
     makeParallelogram(v0.add(origin), v0.add(k_hat), v0.add(i_hat), subdivisions, subdivisions);
@@ -118,8 +117,8 @@ function makeCylinder(radialdivision, heightdivision) {
 //given by heightdivision.
 //
 function makeCone(radialdivision, heightdivision) {
-    console.log("cone");
-    addCircle(new Vector(0,0,-0.5), 0.5, radialdivision, false);
+    let vectors = addCircle(new Vector(0,0,-0.5), 0.5, radialdivision, false);
+
     // fill in your code here.
 }
     
@@ -132,6 +131,31 @@ function makeCone(radialdivision, heightdivision) {
 //recursive subdivision method).
 //
 function makeSphere (slices, stacks) {
+    let longs = [...Array(slices).keys()].map(x => x * 2*Math.PI/slices);
+    let lats = [...Array(stacks).keys()].map(x => -Math.PI/2 + x*Math.PI/stacks);
+
+    longs.push(0);
+    let vLongs = longs.map(a => { return {
+        x: Math.cos(a),
+        y: Math.sin(a),
+    }});
+
+    lats.push(Math.PI/2);
+    let vLats = lats.map(a => { return {
+        s: Math.cos(a)/2,
+        z: Math.sin(a)/2,
+    }});
+
+    for (let i = 0; i < vLongs.length - 1; i++) {
+        for (let j = 0; j < vLats.length - 1; j++) {
+            addQuad(
+                new Vector(vLats[j].s*vLongs[i].x, vLats[j].s*vLongs[i].y, vLats[j].z),
+                new Vector(vLats[j].s*vLongs[i+1].x, vLats[j].s*vLongs[i+1].y, vLats[j].z),
+                new Vector(vLats[j+1].s*vLongs[i+1].x, vLats[j+1].s*vLongs[i+1].y, vLats[j+1].z),
+                new Vector(vLats[j+1].s*vLongs[i].x, vLats[j+1].s*vLongs[i].y, vLats[j+1].z)
+            );
+        }
+    }
     // fill in your code here.
 }
 
