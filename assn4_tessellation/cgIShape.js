@@ -77,6 +77,21 @@ function makeCube(subdivisions) {
     makeParallelogram(v0.add(origin).add(j_hat), v0.add(i_hat).add(j_hat), v0.add(k_hat).add(j_hat), subdivisions, subdivisions);
 }
 
+function addUnitCircle(center, radialdivision, up) {
+    let angles = [...Array(radialdivision).keys()].map(x => x * 2*Math.PI/radialdivision);
+    if (!up) {
+        angles = angles.reverse();
+    }
+    for (let i = 0; i < angles.length - 1; i++) {
+        let a = angles[i];
+        let b = angles[i+1];
+        addTriangleV(center, new Vector(Math.cos(a), Math.sin(a), center.z), new Vector(Math.cos(b), Math.sin(b), center.z));
+    }
+    let a = angles[angles.length-1];
+    let b = angles[0];
+    addTriangleV(center, new Vector(Math.cos(a), Math.sin(a), center.z), new Vector(Math.cos(b), Math.sin(b), center.z));
+}
+
 //
 // fill in code that creates the triangles for a cylinder with diameter 1
 // and height of 1 (centered at the origin) with the number of subdivisions
@@ -85,7 +100,8 @@ function makeCube(subdivisions) {
 //heightdivision.
 //
 function makeCylinder(radialdivision, heightdivision) {
-    // fill in your code here.
+    addUnitCircle(new Vector(0,0,0.5), radialdivision, true);
+    addUnitCircle(new Vector(0,0,-0.5), radialdivision, false);
 }
 
 
