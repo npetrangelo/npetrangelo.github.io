@@ -77,23 +77,20 @@ function makeCube(subdivisions) {
     makeParallelogram(v0.add(origin).add(j_hat), v0.add(i_hat).add(j_hat), v0.add(k_hat).add(j_hat), subdivisions, subdivisions);
 }
 
-function addUnitCircle(center, radius, radialdivision, up) {
+function addCircle(center, radius, radialdivision, up) {
     let angles = [...Array(radialdivision).keys()].map(x => x * 2*Math.PI/radialdivision);
     if (!up) {
         angles = angles.reverse();
     }
-    for (let i = 0; i < angles.length - 1; i++) {
-        let a = angles[i];
-        let b = angles[i+1];
-        let A = new Vector(Math.cos(a), Math.sin(a), center.z/radius).scale(radius);
-        let B = new Vector(Math.cos(b), Math.sin(b), center.z/radius).scale(radius);
-        addTriangleV(center, A, B);
+    let vectors = angles.map(a => new Vector(Math.cos(a), Math.sin(a), center.z/radius).scale(radius));
+    for (let i = 0; i < vectors.length - 1; i++) {
+        let a = vectors[i];
+        let b = vectors[i+1];
+        addTriangleV(center, a, b);
     }
-    let a = angles[angles.length-1];
-    let b = angles[0];
-    let A = new Vector(Math.cos(a), Math.sin(a), center.z/radius).scale(radius);
-    let B = new Vector(Math.cos(b), Math.sin(b), center.z/radius).scale(radius);
-    addTriangleV(center, A, B);
+    let a = vectors[angles.length-1];
+    let b = vectors[0];
+    addTriangleV(center, a, b);
 }
 
 //
@@ -104,8 +101,8 @@ function addUnitCircle(center, radius, radialdivision, up) {
 //heightdivision.
 //
 function makeCylinder(radialdivision, heightdivision) {
-    addUnitCircle(new Vector(0,0,0.5), 0.5, radialdivision, true);
-    addUnitCircle(new Vector(0,0,-0.5), 0.5, radialdivision, false);
+    addCircle(new Vector(0,0,0.5), 0.5, radialdivision, true);
+    addCircle(new Vector(0,0,-0.5), 0.5, radialdivision, false);
 }
 
 
@@ -118,7 +115,7 @@ function makeCylinder(radialdivision, heightdivision) {
 //
 function makeCone(radialdivision, heightdivision) {
     console.log("cone");
-    addUnitCircle(new Vector(0,0,-0.5), 0.5, radialdivision, false);
+    addCircle(new Vector(0,0,-0.5), 0.5, radialdivision, false);
     // fill in your code here.
 }
     
