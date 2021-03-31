@@ -113,6 +113,7 @@ function makeCylinder(radialdivision, heightdivision) {
 //given by heightdivision.
 //
 function makeCone(radialdivision, heightdivision) {
+    addUnitCircle(new Vector(0,0,-0.5), radialdivision, false);
     // fill in your code here.
 }
     
