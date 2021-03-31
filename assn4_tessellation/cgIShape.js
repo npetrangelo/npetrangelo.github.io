@@ -79,6 +79,7 @@ function makeCube(subdivisions) {
 
 function addCircle(center, radius, radialdivision, up) {
     let angles = [...Array(radialdivision).keys()].map(x => x * 2*Math.PI/radialdivision);
+    angles.push(0);
     if (!up) {
         angles = angles.reverse();
     }
@@ -88,9 +89,6 @@ function addCircle(center, radius, radialdivision, up) {
         let b = vectors[i+1];
         addTriangleV(center, a, b);
     }
-    let a = vectors[angles.length-1];
-    let b = vectors[0];
-    addTriangleV(center, a, b);
     return vectors;
 }
 
@@ -109,9 +107,6 @@ function makeCylinder(radialdivision, heightdivision) {
         let b = vectors[i+1];
         makeParallelogram(a, a.add(new Vector(0,0,-1)), b, heightdivision, 1);
     }
-    let a = vectors[vectors.length-1];
-    let b = vectors[0];
-    makeParallelogram(a, a.add(new Vector(0,0,-1)), b, heightdivision, 1);
 }
 
 
