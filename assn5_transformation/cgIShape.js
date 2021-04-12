@@ -88,9 +88,7 @@ class Sphere extends cgIShape {
 }
 
 
-function radians(degrees)
-{
-  var pi = Math.PI;
-  return degrees * (pi/180);
+function radians(degrees) {
+  return degrees * (Math.PI/180);
 }
 

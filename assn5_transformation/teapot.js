@@ -1735,11 +1735,11 @@ class Teapot extends cgIShape {
     constructor () {
         super();
         
-        //Go through the verts and fill inb the points, bary, and indicies arrays.
-        var i;
-        var j=0;
-        var nverts = teapot_verts.length / 3;
-        var ntriangle = nverts / 3;
+        //Go through the verts and fill inb the points, bary, and indices arrays.
+        let i;
+        let j=0;
+        let nverts = teapot_verts.length / 3;
+        let ntriangle = nverts / 3;
         
         for (i=0; i < ntriangle; i++) {
             
