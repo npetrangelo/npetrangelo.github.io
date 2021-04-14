@@ -5,7 +5,7 @@ class cgIShape {
         this.indices = [];
     }
     
-    addTriangle (x0,y0,z0,x1,y1,z1,x2,y2,z2) {
+    addTriangle (x0,y0,z0,x2,y2,z2,x1,y1,z1) {
         var nverts = this.points.length / 4;
         
         // push first vertex
