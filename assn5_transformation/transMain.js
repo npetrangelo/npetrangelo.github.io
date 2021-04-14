@@ -28,7 +28,8 @@ function setUpCamera() {
     // set up your projection
     // defualt is orthographic projection
     let projMatrix = glMatrix.mat4.create();
-    glMatrix.mat4.ortho(projMatrix, -5, 5, -5, 5, 1.0, 300.0);
+    //glMatrix.mat4.ortho(projMatrix, -5, 5, -5, 5, 1.0, 300.0);
+    glMatrix.mat4.perspective(projMatrix, Math.PI/3, 1, 0.01, null);
     gl.uniformMatrix4fv (program.uProjT, false, projMatrix);
 
     
@@ -54,7 +55,7 @@ function drawShapes() {
     let modelMatrix = glMatrix.mat4.create();
     
     // drawing the teapot rotating around Y  180 degrees
-    glMatrix.mat4.rotateY (modelMatrix,  modelMatrix, radians(180.0))
+    glMatrix.mat4.rotateY (modelMatrix,  modelMatrix, radians(180.0));
     
     // send the model matrix to the shader and draw.
     gl.uniformMatrix4fv (program.uModelT, false, modelMatrix);
