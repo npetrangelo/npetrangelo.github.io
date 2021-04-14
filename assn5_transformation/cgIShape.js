@@ -73,7 +73,7 @@ class cgIShape {
         for (let i = 0; i < vectors.length - 1; i++) {
             let a = vectors[i];
             let b = vectors[i+1];
-            this.addTriangleV(center, a, b);
+            this.addTriangleV(center, b, a);
         }
         return vectors;
     }
@@ -138,8 +138,8 @@ class Cylinder extends cgIShape {
     
     makeCylinder (radialdivision, heightdivision) {
         // fill in your cylinder code here
-        let vectors = this.addCircle(new Vector(0,0,0.5), 0.5, radialdivision, true);
         this.addCircle(new Vector(0,0,-0.5), 0.5, radialdivision, false);
+        let vectors = this.addCircle(new Vector(0,0,0.5), 0.5, radialdivision, true).reverse();
         for (let i = 0; i < vectors.length - 1; i++) {
             let a = vectors[i];
             let b = vectors[i+1];
