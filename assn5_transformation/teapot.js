@@ -1754,7 +1754,7 @@ class Teapot extends cgIShape {
             let y2 = -1.0 * teapot_verts[j++];
             let z2 = teapot_verts[j++];
             
-            this.addTriangle (x0, y0, z0, x1, y1, z1, x2, y2, z2);
+            this.addTriangle (x0, y0, z0, x2, y2, z2, x1, y1, z1);
         }
     }
 }
