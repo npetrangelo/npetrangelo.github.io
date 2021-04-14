@@ -35,6 +35,8 @@ function setUpCamera() {
     let projMatrix = glMatrix.mat4.create();
     //glMatrix.mat4.ortho(projMatrix, -5, 5, -5, 5, 1.0, 300.0);
     glMatrix.mat4.perspective(projMatrix, Math.PI/2, 1, 0.01, null);
+    glMatrix.mat4.rotateX(projMatrix, projMatrix, radians(30));
+    glMatrix.mat4.translate(projMatrix, projMatrix, [0, -3, 0]);
     gl.uniformMatrix4fv (program.uProjT, false, projMatrix);
 
     
@@ -66,8 +68,8 @@ function drawShapes() {
     gl.drawElements(gl.TRIANGLES, myTeapot.indices.length, gl.UNSIGNED_SHORT, 0);
 
     modelMatrix = glMatrix.mat4.create();
-    glMatrix.mat4.rotateY (modelMatrix,  modelMatrix, radians(15.0));
-    glMatrix.mat4.translate(modelMatrix, modelMatrix, [-1, 0, 0]);
+    glMatrix.mat4.translate(modelMatrix, modelMatrix, [-3, 0.5, 0]);
+    glMatrix.mat4.rotateY (modelMatrix,  modelMatrix, radians(0.0));
 
     gl.uniformMatrix4fv (program.uModelT, false, modelMatrix);
     gl.bindVertexArray(myCube.VAO);
