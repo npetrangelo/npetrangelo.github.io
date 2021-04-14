@@ -6,8 +6,9 @@ let gl, program;
 
 // Global declarations of objects that you will be drawing
 let myTeapot = null;
-let myCube = null;
-let myCylinder = null;
+let pedestalTop = null;
+let pedestalMiddle = null;
+let pedestalBottom = null;
 
 
 
@@ -20,8 +21,14 @@ function createShapes() {
     myTeapot = new Teapot();
     myTeapot.VAO = bindVAO (myTeapot);
 
-    myCube = new Cube(1);
-    myCube.VAO = bindVAO(myCube);
+    pedestalTop = new Cube(3);
+    pedestalTop.VAO = bindVAO(pedestalTop);
+
+    pedestalMiddle = new Cylinder(10, 10);
+    pedestalMiddle.VAO = bindVAO(pedestalMiddle);
+
+    pedestalBottom = new Cube(3);
+    pedestalBottom.VAO = bindVAO(pedestalBottom);
 }
 
 
@@ -47,6 +54,11 @@ function setUpCamera() {
     gl.uniformMatrix4fv (program.uViewT, false, viewMatrix);
 }
 
+function drawShape(shape, matrix) {
+    gl.uniformMatrix4fv (program.uModelT, false, matrix);
+    gl.bindVertexArray(shape.VAO);
+    gl.drawElements(gl.TRIANGLES, shape.indices.length, gl.UNSIGNED_SHORT, 0);
+}
 
 //
 // Use this function to draw all of your shapes.
@@ -63,17 +75,26 @@ function drawShapes() {
     glMatrix.mat4.rotateY (modelMatrix,  modelMatrix, radians(180.0));
     
     // send the model matrix to the shader and draw.
-    gl.uniformMatrix4fv (program.uModelT, false, modelMatrix);
-    gl.bindVertexArray(myTeapot.VAO);
-    gl.drawElements(gl.TRIANGLES, myTeapot.indices.length, gl.UNSIGNED_SHORT, 0);
+    drawShape(myTeapot, modelMatrix);
 
     modelMatrix = glMatrix.mat4.create();
-    glMatrix.mat4.translate(modelMatrix, modelMatrix, [-3, 0.5, 0]);
-    glMatrix.mat4.rotateY (modelMatrix,  modelMatrix, radians(0.0));
+    glMatrix.mat4.scale(modelMatrix, modelMatrix, [2, 0.5, 2]);
+    glMatrix.mat4.translate(modelMatrix, modelMatrix, [0, -1, 0]);
 
-    gl.uniformMatrix4fv (program.uModelT, false, modelMatrix);
-    gl.bindVertexArray(myCube.VAO);
-    gl.drawElements(gl.TRIANGLES, myCube.indices.length, gl.UNSIGNED_SHORT, 0);
+    drawShape(pedestalTop, modelMatrix);
+
+    modelMatrix = glMatrix.mat4.create();
+    glMatrix.mat4.scale(modelMatrix, modelMatrix, [2, 0.5, 2]);
+    glMatrix.mat4.translate(modelMatrix, modelMatrix, [0, -5, 0]);
+
+    drawShape(pedestalBottom, modelMatrix);
+
+    modelMatrix = glMatrix.mat4.create();
+    glMatrix.mat4.translate(modelMatrix, modelMatrix, [0, -1.5, 0]);
+    glMatrix.mat4.scale(modelMatrix, modelMatrix, [1, 1.5, 1]);
+    glMatrix.mat4.rotateX (modelMatrix,  modelMatrix, radians(90.0));
+
+    drawShape(pedestalMiddle, modelMatrix);
 }
 
 ///////////////////////////////////////////////////////////////////
