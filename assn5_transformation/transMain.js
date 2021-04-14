@@ -73,6 +73,7 @@ function drawShapes() {
     
     // drawing the teapot rotating around Y  180 degrees
     glMatrix.mat4.rotateY (modelMatrix,  modelMatrix, radians(180.0));
+    glMatrix.mat4.translate(modelMatrix, modelMatrix, [0, -0.25, 0]);
     
     // send the model matrix to the shader and draw.
     drawShape(myTeapot, modelMatrix);
