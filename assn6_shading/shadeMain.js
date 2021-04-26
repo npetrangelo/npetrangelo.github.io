@@ -50,7 +50,7 @@ function bindVAO (shape, program) {
 
     
     // Setting up element array
-    // element indicies can be obtained from the indicies member of the
+    // element indices can be obtained from the indices member of the
     // shape object.  3 values per triangle are stored in this
     // array.
 
@@ -64,7 +64,7 @@ function bindVAO (shape, program) {
 
 //
 // In this function, you must set up all of the uniform variables
-// in the shaders required for the implememtation of the Phong
+// in the shaders required for the implementation of the Phong
 // Illumination model.
 //
 // Check out the source of the vertex shader in the HTML file
@@ -94,7 +94,7 @@ function setUpPhong(program) {
 
     
     // set up your model transform...Add transformations
-    // if you are moiving, scaling, or rotating the object.
+    // if you are moving, scaling, or rotating the object.
     // Default is no transformations at all (identity matrix).
     //
     let modelMatrix = glMatrix.mat4.create();
