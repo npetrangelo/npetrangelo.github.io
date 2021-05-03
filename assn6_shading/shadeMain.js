@@ -1,19 +1,19 @@
-  'use strict';
+'use strict';
 
-  // Global variables that are set and used
-  // across the application
-  let gl;
+// Global variables that are set and used
+// across the application
+let gl;
 
-  // The programs
-  let perVertexProgram;
-  let perFragmentProgram;
-  
-  // VAOs for the objects
-  var mySpherePerVertex = null;
-  var mySpherePerFragment = null;
+// The programs
+let perVertexProgram;
+let perFragmentProgram;
 
-  // what is currently showing
-  let nowShowing = 'Vertex';
+// VAOs for the objects
+var mySpherePerVertex = null;
+var mySpherePerFragment = null;
+
+// what is currently showing
+let nowShowing = 'Vertex';
 
 //
 // Creates a VAO for a given object and return it.
@@ -35,32 +35,45 @@
 function bindVAO (shape, program) {
     
     //create and bind VAO
-
+    let theVAO = gl.createVertexArray();
+    gl.bindVertexArray(theVAO);
     
     // create, bind, and fill buffer for vertex locations
     // vertex locations can be obtained from the points member of the
     // shape object.  3 floating point values (x,y,z) per vertex are
     // stored in this array.
+    let myVertexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, myVertexBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(shape.points), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(program.aVertexPosition);
+    gl.vertexAttribPointer(program.aVertexPosition, 4, gl.FLOAT, false, 0, 0);
 
-    
     // create, bind, and fill buffer for normal values
     // normals can be obtained from the normals member of the
     // shape object.  3 floating point values (x,y,z) per vertex are
     // stored in this array.
-
+    let myBaryBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, myBaryBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(shape.bary), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(program.aBary);
+    gl.vertexAttribPointer(program.aBary, 3, gl.FLOAT, false, 0, 0);
     
     // Setting up element array
     // element indices can be obtained from the indices member of the
     // shape object.  3 values per triangle are stored in this
     // array.
-
+    let myIndexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, myIndexBuffer);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(shape.indices), gl.STATIC_DRAW);
 
     // Do cleanup
+    gl.bindVertexArray(null);
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
 
     // return the VAO
-
+    return theVAO;
 }
-
 
 //
 // In this function, you must set up all of the uniform variables
@@ -79,8 +92,6 @@ function bindVAO (shape, program) {
 //  You should also set up your Model transform here.
 
 function setUpPhong(program) {
-    
-
     // Recall that you must set the program to be current using
     // the gl useProgram function
     gl.useProgram (program);
@@ -99,8 +110,6 @@ function setUpPhong(program) {
     //
     let modelMatrix = glMatrix.mat4.create();
     gl.uniformMatrix4fv (program.uModelT, false, modelMatrix);
-    
-    
 }
 
 //
@@ -156,22 +165,22 @@ function drawShapes(object, program) {
     
 }
 
-  // Given an id, extract the content's of a shader script
-  // from the DOM and return the compiled shader
-  function getShader(id) {
+// Given an id, extract the content's of a shader script
+// from the DOM and return the compiled shader
+function getShader(id) {
     const script = document.getElementById(id);
     const shaderString = script.text.trim();
 
     // Assign shader depending on the type of shader
     let shader;
     if (script.type === 'x-shader/x-vertex') {
-      shader = gl.createShader(gl.VERTEX_SHADER);
+        shader = gl.createShader(gl.VERTEX_SHADER);
     }
     else if (script.type === 'x-shader/x-fragment') {
-      shader = gl.createShader(gl.FRAGMENT_SHADER);
+        shader = gl.createShader(gl.FRAGMENT_SHADER);
     }
     else {
-      return null;
+        return null;
     }
 
     // Compile the shader using the supplied shader code
@@ -180,15 +189,15 @@ function drawShapes(object, program) {
 
     // Ensure the shader is valid
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      console.error("Compiling shader " + id + " " + gl.getShaderInfoLog(shader));
-      return null;
+        console.error("Compiling shader " + id + " " + gl.getShaderInfoLog(shader));
+        return null;
     }
 
     return shader;
-  }
+}
 
-  // Create a program with the appropriate vertex and fragment shaders
-  function initProgram (vertexid, fragmentid) {
+// Create a program with the appropriate vertex and fragment shaders
+function initProgram (vertexid, fragmentid) {
     // set up the per-vertex program
     const vertexShader = getShader(vertexid);
     const fragmentShader = getShader(fragmentid);
@@ -202,7 +211,7 @@ function drawShapes(object, program) {
     gl.linkProgram(program);
 
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.error('Could not initialize shaders');
+        console.error('Could not initialize shaders');
     }
 
     // Use this program instance
@@ -227,13 +236,10 @@ function drawShapes(object, program) {
     program.ke = gl.getUniformLocation (program, 'ke');
       
     return program;
-  }
+}
 
-
-
-  
-  // We call draw to render to our canvas
-  function draw() {
+// We call draw to render to our canvas
+function draw() {
     // Clear the scene
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -250,16 +256,15 @@ function drawShapes(object, program) {
     gl.bindVertexArray(null);
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
-  }
+}
 
-  // Entry point to our application
-  function init() {
-      
+// Entry point to our application
+function init() {
     // Retrieve the canvas
     const canvas = document.getElementById('webgl-canvas');
     if (!canvas) {
-      console.error(`There is no canvas with id ${'webgl-canvas'} on this page.`);
-      return null;
+        console.error(`There is no canvas with id ${'webgl-canvas'} on this page.`);
+        return null;
     }
 
     // deal with keypress
@@ -270,7 +275,7 @@ function drawShapes(object, program) {
     if (!gl) {
         console.error(`There is no WebGL 2.0 context`);
         return null;
-      }
+    }
       
     // Set the clear color to be black
     gl.clearColor(0, 0, 0, 1);
@@ -302,4 +307,4 @@ function drawShapes(object, program) {
     
     // do a draw
     draw();
-  }
+}
