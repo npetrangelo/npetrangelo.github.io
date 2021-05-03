@@ -128,10 +128,12 @@ function setUpCamera(program) {
     
 
     // set up your projection
-
+    let projMatrix = glMatrix.mat4.create();
     
     // set up your view
-
+    let viewMatrix = glMatrix.mat4.create();
+    glMatrix.mat4.lookAt(viewMatrix, [0, 0, -5], [0, 0, 0], [0, 1, 0]);
+    gl.uniformMatrix4fv (program.uViewT, false, viewMatrix);
 }
 
 ///////////////////////////////////////////////////////////////////
