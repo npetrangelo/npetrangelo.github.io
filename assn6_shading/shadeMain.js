@@ -52,11 +52,11 @@ function bindVAO (shape, program) {
     // normals can be obtained from the normals member of the
     // shape object.  3 floating point values (x,y,z) per vertex are
     // stored in this array.
-    let myBaryBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, myBaryBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(shape.bary), gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(program.aBary);
-    gl.vertexAttribPointer(program.aBary, 3, gl.FLOAT, false, 0, 0);
+    let myNormalBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, myNormalBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(shape.normals), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(program.aNormal);
+    gl.vertexAttribPointer(program.aNormal, 3, gl.FLOAT, true, 0, 0);
     
     // Setting up element array
     // element indices can be obtained from the indices member of the
@@ -95,15 +95,24 @@ function setUpPhong(program) {
     // Recall that you must set the program to be current using
     // the gl useProgram function
     gl.useProgram (program);
-    
+
     //
     // set values for all your uniform variables
     // including the model transform
     // but not your view and projection transforms as
     // they are set in setUpCamera()
     //
+    program.uModelT = gl.getUniformLocation (program, 'modelT');
+    program.ambientLight = gl.getUniformLocation (program, 'ambientLight');
+    program.lightPosition = gl.getUniformLocation (program, 'lightPosition');
+    program.lightColor = gl.getUniformLocation (program, 'lightColor');
+    program.baseColor = gl.getUniformLocation (program, 'baseColor');
+    program.specHighlightColor = gl.getUniformLocation (program, 'specHighlightColor');
+    program.ka = gl.getUniformLocation (program, 'ka');
+    program.kd = gl.getUniformLocation (program, 'kd');
+    program.ks = gl.getUniformLocation (program, 'ks');
+    program.ke = gl.getUniformLocation (program, 'ke');
 
-    
     // set up your model transform...Add transformations
     // if you are moving, scaling, or rotating the object.
     // Default is no transformations at all (identity matrix).
@@ -125,7 +134,6 @@ function setUpCamera(program) {
     // Recall you must set the program to be current using the gl
     // function useProgram.
      gl.useProgram (program);
-    
 
     // set up your projection
     let projMatrix = glMatrix.mat4.create();
