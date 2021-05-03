@@ -103,13 +103,13 @@ function setUpPhong(program) {
     // they are set in setUpCamera()
     //
     gl.uniformMatrix4fv(program.uModelT, false, glMatrix.mat4.create());
-    gl.uniform3fv(program.ambientLight, [1.0, 1.0, 1.0]);
-    gl.uniform3fv(program.lightPosition, [0.0, 2.0, 0.0]);
-    gl.uniform3fv(program.lightColor, [1.0, 0.5, 0.5]);
-    gl.uniform3fv(program.baseColor, [1.0, 0.5, 0.5]);
-    gl.uniform3fv(program.specHighlightColor, [1.0, 0.5, 0.5]);
+    gl.uniform3fv(program.ambientLight, [0.1, 0.1, 0.1]);
+    gl.uniform3fv(program.lightPosition, [1.0, -2.0, -2.0]);
+    gl.uniform3fv(program.lightColor, [0.5, 0.5, 1.0]);
+    gl.uniform3fv(program.baseColor, [1.0, 1.0, 1.0]);
+    gl.uniform3fv(program.specHighlightColor, [0.0, 0.0, 1.0]);
     gl.uniform1f(program.ka, 1.0);
-    gl.uniform1f(program.kd, 0.5);
+    gl.uniform1f(program.kd, 1.0);
     gl.uniform1f(program.ks, 1.0);
     gl.uniform1f(program.ke, 1.0);
 
@@ -138,8 +138,6 @@ function setUpCamera(program) {
     // set up your projection
     let projMatrix = glMatrix.mat4.create();
     glMatrix.mat4.perspective(projMatrix, Math.PI/2, 1, 0.01, null);
-    glMatrix.mat4.rotateX(projMatrix, projMatrix, radians(10));
-    glMatrix.mat4.translate(projMatrix, projMatrix, [0, -0.5, 0]);
     gl.uniformMatrix4fv (program.uProjT, false, projMatrix);
     
     // set up your view
