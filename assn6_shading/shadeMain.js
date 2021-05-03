@@ -102,16 +102,16 @@ function setUpPhong(program) {
     // but not your view and projection transforms as
     // they are set in setUpCamera()
     //
-    program.uModelT = gl.getUniformLocation (program, 'modelT');
-    program.ambientLight = gl.getUniformLocation (program, 'ambientLight');
-    program.lightPosition = gl.getUniformLocation (program, 'lightPosition');
-    program.lightColor = gl.getUniformLocation (program, 'lightColor');
-    program.baseColor = gl.getUniformLocation (program, 'baseColor');
-    program.specHighlightColor = gl.getUniformLocation (program, 'specHighlightColor');
-    program.ka = gl.getUniformLocation (program, 'ka');
-    program.kd = gl.getUniformLocation (program, 'kd');
-    program.ks = gl.getUniformLocation (program, 'ks');
-    program.ke = gl.getUniformLocation (program, 'ke');
+    gl.uniformMatrix4fv(program.uModelT, false, glMatrix.mat4.create());
+    gl.uniform3fv(program.ambientLight, [1.0, 1.0, 1.0]);
+    gl.uniform3fv(program.lightPosition, [0.0, 2.0, 0.0]);
+    gl.uniform3fv(program.lightColor, [1.0, 0.5, 0.5]);
+    gl.uniform3fv(program.baseColor, [1.0, 0.5, 0.5]);
+    gl.uniform3fv(program.specHighlightColor, [1.0, 0.5, 0.5]);
+    gl.uniform1f(program.ka, 1.0);
+    gl.uniform1f(program.kd, 0.5);
+    gl.uniform1f(program.ks, 1.0);
+    gl.uniform1f(program.ke, 1.0);
 
     // set up your model transform...Add transformations
     // if you are moving, scaling, or rotating the object.
