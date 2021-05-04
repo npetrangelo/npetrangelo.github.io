@@ -17,7 +17,7 @@ let myCube = null;
 // what is currently showing
 let nowShowing = 'Sphere';
 
-// what texure are you using
+// what texture are you using
 // valid values = "globe", "myimage" or "proc"
 let curTexture = "globe";
 
@@ -41,19 +41,21 @@ function setUpTextures() {
     gl.bindTexture(gl.TEXTURE_2D, worldTexture);
 
     // load the actual image
-    let worldImage = document.getElementById('world-texture')
+    let worldImage = document.getElementById('world-texture');
     worldImage.crossOrigin = "";
 
-    // bind the texture so we can perform operations on it
-    gl.bindTexture(gl.TEXTURE_2D, worldTexture);
+    worldImage.onload = () => {
+        // bind the texture so we can perform operations on it
+        gl.bindTexture(gl.TEXTURE_2D, worldTexture);
 
-    // load the texture data
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, worldImage.width, worldImage.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, worldImage);
+        // load the texture data
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, worldImage.width, worldImage.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, worldImage);
 
-    // set texturing parameters
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        // set texturing parameters
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    }
 }
 
 //
@@ -219,7 +221,7 @@ function bindVAO(shape, program) {
     gl.vertexAttribPointer(program.aUV, 2, gl.FLOAT, false, 0, 0);
 
     // Setting up element array
-    // element indicies can be obtained from the indicies member of the
+    // element indices can be obtained from the indices member of the
     // shape object.  3 values per triangle are stored in this
     // array.
     let myIndexBuffer = gl.createBuffer();
