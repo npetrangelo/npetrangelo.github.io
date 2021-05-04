@@ -11,8 +11,8 @@ let sphereGlobeProgram;
 let worldTexture;
 
 // VAOs for the objects
-var mySphere = null;
-var myCube = null;
+let mySphere = null;
+let myCube = null;
 
 // what is currently showing
 let nowShowing = 'Sphere';
@@ -21,11 +21,11 @@ let nowShowing = 'Sphere';
 // valid values = "globe", "myimage" or "proc"
 let curTexture = "globe";
 
-var anglesReset = [30.0, 30.0, 0.0];
-var cube_angles = [30.0, 30.0, 0.0];
-var sphere_angles = [180.0, 180.0, 0.0];
-var angles = sphere_angles;
-var angleInc = 5.0;
+let anglesReset = [30.0, 30.0, 0.0];
+let cube_angles = [30.0, 30.0, 0.0];
+let sphere_angles = [180.0, 180.0, 0.0];
+let angles = sphere_angles;
+let angleInc = 5.0;
 
 
 //
@@ -41,7 +41,7 @@ function setUpTextures() {
     gl.bindTexture(gl.TEXTURE_2D, worldTexture);
 
     // load the actual image
-    var worldImage = document.getElementById('world-texture')
+    let worldImage = document.getElementById('world-texture')
     worldImage.crossOrigin = "";
 
     // bind the texture so we can perform operations on it
@@ -63,7 +63,7 @@ function setUpTextures() {
 function drawCurrentShape() {
 
     // which shape are we drawing
-    var object = mySphere;
+    let object = mySphere;
     if (nowShowing == "Cube") object = myCube;
 
     // may need to set different parameters based on the texture
@@ -71,7 +71,7 @@ function drawCurrentShape() {
     // curTexture.   If will have the value of "globe", "myimage" or "proc"
 
     // which program are we using
-    var program = sphereGlobeProgram;
+    let program = sphereGlobeProgram;
 
     // set up your uniform variables for drawing
     gl.useProgram(program);
