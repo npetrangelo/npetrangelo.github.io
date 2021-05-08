@@ -8,7 +8,7 @@ let gl;
 let sphereGlobeProgram;
 
 // the textures
-let worldTexture;
+let textures;
 
 // VAOs for the objects
 let mySphere = null;
@@ -27,34 +27,38 @@ let sphere_angles = [180.0, 180.0, 0.0];
 let angles = sphere_angles;
 let angleInc = 5.0;
 
-
-//
-// load up the textures you will use in the shader(s)
-// The setup for the globe texture is done for you
-// Any additional images that you include will need to
-// set up as well.
-//
-function setUpTextures() {
-
+function setUpTexture(imageId) {
     // get some texture space from the gpu
-    worldTexture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, worldTexture);
+    let texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
 
     // load the actual image
-    let worldImage = document.getElementById('globe');
-    worldImage.crossOrigin = "";
+    let image = document.getElementById(imageId);
+    image.crossOrigin = "";
 
-    worldImage.onload = () => {
+    image.onload = () => {
         // bind the texture so we can perform operations on it
-        gl.bindTexture(gl.TEXTURE_2D, worldTexture);
+        gl.bindTexture(gl.TEXTURE_2D, texture);
 
         // load the texture data
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, worldImage.width, worldImage.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, worldImage);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, image.width, image.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, image);
 
         // set texturing parameters
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    }
+    return texture;
+}
+
+// load up the textures you will use in the shader(s)
+// The setup for the globe texture is done for you
+// Any additional images that you include will need to
+// set up as well.
+function setUpTextures() {
+    textures = {
+        globe: setUpTexture('globe'),
+        mars: setUpTexture('mars'),
     }
 }
 
@@ -71,6 +75,7 @@ function drawCurrentShape() {
     // may need to set different parameters based on the texture
     // you are using...The current texture is found in the global variable
     // curTexture.   If will have the value of "globe", "myimage" or "proc"
+    let texture = textures[curTexture];
 
     // which program are we using
     let program = sphereGlobeProgram;
@@ -81,7 +86,7 @@ function drawCurrentShape() {
     // set up texture uniform & other uniforms that you might
     // have added to the shader
     gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, worldTexture);
+    gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.uniform1i(program.uTheTexture, 0);
 
     // set up rotation uniform
