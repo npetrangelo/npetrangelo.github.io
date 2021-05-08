@@ -41,7 +41,7 @@ function setUpTextures() {
     gl.bindTexture(gl.TEXTURE_2D, worldTexture);
 
     // load the actual image
-    let worldImage = document.getElementById('world-texture');
+    let worldImage = document.getElementById('globe');
     worldImage.crossOrigin = "";
 
     worldImage.onload = () => {

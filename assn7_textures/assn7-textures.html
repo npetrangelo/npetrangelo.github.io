@@ -92,7 +92,7 @@
     <script type="text/javascript" src="./textureMain.js"></script>
 
     <!-- texture images -->
-    <img id="world-texture" src="1_earth_16k.jpg" style="display: none;"> </img>
+    <img id="globe" src="1_earth_16k.jpg" style="display: none;"> </img>
 
     <!-- keyboard functions -->
     <script type="text/javascript">
@@ -124,6 +124,7 @@
             if (key == 'Z') angles[2] += angleInc;
 
             draw();
+            console.log(curTexture);
         }
     </script>
 
