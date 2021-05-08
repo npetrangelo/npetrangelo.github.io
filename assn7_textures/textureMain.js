@@ -5,6 +5,7 @@
 let gl;
 
 // The programs
+let programs;
 let sphereGlobeProgram;
 
 // the textures
@@ -60,6 +61,11 @@ function setUpTextures() {
         globe: setUpTexture('globe'),
         mars: setUpTexture('mars'),
     }
+    programs = {
+        globe: sphereGlobeProgram,
+        mars: sphereGlobeProgram,
+        proc: initProgram('local-V', 'local-F'),
+    }
 }
 
 //
@@ -74,11 +80,11 @@ function drawCurrentShape() {
 
     // may need to set different parameters based on the texture
     // you are using...The current texture is found in the global variable
-    // curTexture.   If will have the value of "globe", "myimage" or "proc"
+    // curTexture.   If will have the value of "globe", "mars" or "proc"
     let texture = textures[curTexture];
 
     // which program are we using
-    let program = sphereGlobeProgram;
+    let program = programs[curTexture];
 
     // set up your uniform variables for drawing
     gl.useProgram(program);
@@ -95,7 +101,6 @@ function drawCurrentShape() {
     //Bind the VAO and draw
     gl.bindVertexArray(object.VAO);
     gl.drawElements(gl.TRIANGLES, object.indices.length, gl.UNSIGNED_SHORT, 0);
-
 }
 
 // Create a program with the appropriate vertex and fragment shaders
@@ -139,7 +144,7 @@ function initProgram(vertexid, fragmentid) {
 ////////////////////////////////////////////////////////////////////
 
 // general call to make and bind a new object based on current
-// settings..Basically a call to shape specfic calls in cgIshape.js
+// settings..Basically a call to shape specific calls in cgIshape.js
 function createShapes() {
 
     // the sphere
