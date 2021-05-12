@@ -27,6 +27,55 @@
 
     </script>
 
+    <script id="textureMap-V" type="x-shader/x-vertex">
+        #version 300 es
+        precision mediump float;
+        // Vertex shader for phong illumination model
+        // Per vertex shading
+
+        // Vertex Attributes
+        in vec3 aVertexPosition; // in model coords
+        in vec2 aUV;    // u-v coordinates
+
+        // outputs
+        out vec2 theUV;  // pass uv's onto the fragment shader
+
+        // for object rotation
+        uniform vec3 theta;
+
+        void main()
+        {
+            // pass uvs to fragment shader
+            theUV = aUV;
+
+            // transform vertex to clip space
+            gl_Position = vec4 (aVertexPosition, 1.0);
+        }
+    </script>
+
+    <!-- fragment Shader -->
+    <script id="textureMap-F" type="x-shader/x-fragment">
+        #version 300 es
+
+        // Fragment shader for phong illumination model
+        // Per vertex shading
+
+        precision lowp float;
+
+        // uvs passed in from vertex shader
+        in vec2 theUV;
+
+        // the texture to use
+        uniform sampler2D theTexture;
+
+        // Color that is the result of this shader
+        out vec4 fragColor;
+
+        void main(void) {
+            fragColor = texture (theTexture, theUV);
+        }
+    </script>
+
     <!-- Matrix library and code for standard transformations -->
     <script type="text/javascript" src="gl-matrix-min.js"></script>
 

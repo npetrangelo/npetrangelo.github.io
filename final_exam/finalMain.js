@@ -68,21 +68,18 @@ function drawShapes() {
 
 }
 
-
 //
 // Use this function to create all the programs that you need
-// You can make use of the auxillary function initProgram
+// You can make use of the auxiliary function initProgram
 // which takes the name of a vertex shader and fragment shader
 //
 // Note that after successfully obtaining a program using the initProgram
-// function, you will beed to assign locations of attribute and unifirm variable
-// based on the in variables to the shaders.   This will vary from program
-// to program.
+// function, you will need to assign locations of attribute and uniform variable
+// based on the in variables to the shaders. This will vary from program to program.
 //
 function initPrograms() {
 
 }
-
 
 // creates a VAO and returns its ID
 function bindVAO(shape, program) {
