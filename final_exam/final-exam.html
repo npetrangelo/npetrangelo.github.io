@@ -97,7 +97,6 @@
             // transform vertex to clip space
             gl_Position = projT * viewT * rz * ry * rx * vec4 (aVertexPosition, 1.0);
         }
-
     </script>
 
     <script id="phong-per-fragment-F" type="x-shader/x-fragment">
@@ -196,7 +195,9 @@
                 </tr>
                 </tbody>
             </table>
-
+            For some reason I cannot discern, it makes you press a key before anything renders,
+            and the diffuse and specular parts of the Phong shader refuse to work, despite the math in
+            those shaders being completely identical to the ones from assignment 6.
         </td>
     </tr>
 </table>

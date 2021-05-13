@@ -95,9 +95,9 @@ function setUpPhong(program) {
     // they are set in setUpCamera()
     //
     gl.uniform3fv(program.ambientLight, [0.2, 0.2, 0.2]);
-    gl.uniform3fv(program.lightPosition, [1.0, 1.0, 0.0]);
+    gl.uniform3fv(program.lightPosition, [1.0, -2.0, -2.0]);
     gl.uniform3fv(program.lightColor, [1.0, 1.0, 1.0]);
-    gl.uniform3fv(program.specHighlightColor, [1.0, 1.0, 1.0]);
+    gl.uniform3fv(program.specHighlightColor, [0.5, 0.5, 0.5]);
     gl.uniform1f(program.ka, 1.0);
     gl.uniform1f(program.kd, 1.0);
     gl.uniform1f(program.ks, 1.0);
@@ -314,14 +314,14 @@ function init() {
     // Read, compile, and link your shaders
     initPrograms();
 
-    // set up Phong parameters
-    setUpPhong(sphereGlobeProgram);
-
     // create and bind your current object
     createShapes();
 
     // set up your camera
     setUpCamera(sphereGlobeProgram);
+
+    // set up Phong parameters
+    setUpPhong(sphereGlobeProgram);
 
     // do a draw
     draw();
