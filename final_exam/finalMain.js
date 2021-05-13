@@ -14,7 +14,7 @@ let mySphere = null;
 let sphereTexture;
 
 // rotation
-let angles = [100.0, 0.0, 0.0];
+let angles = [0.0, 0.0, 0.0];
 let angleInc = 5.0;
 
 //
@@ -24,7 +24,7 @@ let angleInc = 5.0;
 //
 function createShapes() {
     // the sphere
-    mySphere = new Sphere(20, 20);
+    mySphere = new Sphere(30, 30);
     mySphere.VAO = bindVAO(mySphere, sphereGlobeProgram);
 }
 
@@ -111,7 +111,7 @@ function drawShapes() {
 //
 function initPrograms() {
     // Read, compile, and link your shaders
-    sphereGlobeProgram = initProgram('textureMap-V', 'textureMap-F');
+    sphereGlobeProgram = initProgram(['textureMap-V', 'textureMap-F']);
 
     setUpTextures();
 }
@@ -196,16 +196,14 @@ function getShader(id) {
 //
 // will return null if something went wrong
 //
-function initProgram(vertex_id, fragment_id) {
-    const vertexShader = getShader(vertex_id);
-    const fragmentShader = getShader(fragment_id);
+function initProgram(shader_ids) {
+    let shaders = shader_ids.map(shader_id => {return getShader(shader_id)});
 
     // Create a program
     let program = gl.createProgram();
 
     // Attach the shaders to this program
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragmentShader);
+    shaders.forEach(shader => gl.attachShader(program, shader));
     gl.linkProgram(program);
 
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
