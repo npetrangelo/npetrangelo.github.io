@@ -39,9 +39,14 @@ function setUpCamera(program) {
     gl.useProgram(program);
 
     // set up your projection
+    let projMatrix = glMatrix.mat4.create();
+    glMatrix.mat4.perspective(projMatrix, Math.PI/2, 1, 0.01, null);
+    gl.uniformMatrix4fv(program.uProjT, false, projMatrix);
 
     // set up your view
-
+    let viewMatrix = glMatrix.mat4.create();
+    glMatrix.mat4.lookAt(viewMatrix, [0, 0, 1], [0, 0, -1], [0, 1, 0]);
+    gl.uniformMatrix4fv(program.uViewT, false, viewMatrix);
 }
 
 function setUpTexture(imageId) {
@@ -219,6 +224,8 @@ function initProgram(vertex_id, fragment_id) {
     // uniforms that you add to your shaders
     program.uTheTexture = gl.getUniformLocation(program, 'theTexture');
     program.uTheta = gl.getUniformLocation(program, 'theta');
+    program.uViewT = gl.getUniformLocation (program, 'viewT');
+    program.uProjT = gl.getUniformLocation (program, 'projT');
 
     return program;
 }
@@ -281,6 +288,9 @@ function init() {
 
     // create and bind your current object
     createShapes();
+
+    // set up your camera
+    setUpCamera(sphereGlobeProgram);
 
     // do a draw
     draw();

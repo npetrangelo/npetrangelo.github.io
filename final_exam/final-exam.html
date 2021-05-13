@@ -40,6 +40,12 @@
         // outputs
         out vec2 theUV;  // pass uv's onto the fragment shader
 
+        // view transform
+        uniform mat4 viewT;
+
+        // projection tramsform
+        uniform mat4 projT;
+
         // for object rotation
         uniform vec3 theta;
 
@@ -71,7 +77,7 @@
             theUV = aUV;
 
             // transform vertex to clip space
-            gl_Position = rz * ry * rx * vec4 (aVertexPosition, 1.0);
+            gl_Position = projT * viewT * rz * ry * rx * vec4 (aVertexPosition, 1.0);
         }
     </script>
 
