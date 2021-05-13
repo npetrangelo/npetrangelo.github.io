@@ -90,7 +90,6 @@ function bindVAO (shape, program) {
 //
 //
 //  You should also set up your Model transform here.
-
 function setUpPhong(program) {
     // Recall that you must set the program to be current using
     // the gl useProgram function

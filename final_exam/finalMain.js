@@ -83,6 +83,27 @@ function setUpTextures() {
     sphereTexture = setUpTexture("luxo");
 }
 
+function setUpPhong(program) {
+    // Recall that you must set the program to be current using
+    // the gl useProgram function
+    gl.useProgram (program);
+
+    //
+    // set values for all your uniform variables
+    // including the model transform
+    // but not your view and projection transforms as
+    // they are set in setUpCamera()
+    //
+    gl.uniform3fv(program.ambientLight, [0.2, 0.2, 0.2]);
+    gl.uniform3fv(program.lightPosition, [1.0, 2.0, 0.0]);
+    gl.uniform3fv(program.lightColor, [1.0, 1.0, 1.0]);
+    gl.uniform3fv(program.specHighlightColor, [1.0, 1.0, 1.0]);
+    gl.uniform1f(program.ka, 1.0);
+    gl.uniform1f(program.kd, 1.0);
+    gl.uniform1f(program.ks, 1.0);
+    gl.uniform1f(program.ke, 1.0);
+}
+
 //
 //  This function draws all of the shapes required for your scene
 //
@@ -111,7 +132,7 @@ function drawShapes() {
 //
 function initPrograms() {
     // Read, compile, and link your shaders
-    sphereGlobeProgram = initProgram(['textureMap-V', 'textureMap-F']);
+    sphereGlobeProgram = initProgram(['phong-per-fragment-V', 'phong-per-fragment-F']);
 
     setUpTextures();
 }
@@ -217,6 +238,7 @@ function initProgram(shader_ids) {
     // for easy access later in the code
     program.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
     program.aUV = gl.getAttribLocation(program, 'aUV');
+    program.aNormal = gl.getAttribLocation(program, 'aNormal');
 
     // uniforms - you will need to add references for any additional
     // uniforms that you add to your shaders
@@ -224,6 +246,14 @@ function initProgram(shader_ids) {
     program.uTheta = gl.getUniformLocation(program, 'theta');
     program.uViewT = gl.getUniformLocation (program, 'viewT');
     program.uProjT = gl.getUniformLocation (program, 'projT');
+    program.ambientLight = gl.getUniformLocation (program, 'ambientLight');
+    program.lightPosition = gl.getUniformLocation (program, 'lightPosition');
+    program.lightColor = gl.getUniformLocation (program, 'lightColor');
+    program.specHighlightColor = gl.getUniformLocation (program, 'specHighlightColor');
+    program.ka = gl.getUniformLocation (program, 'ka');
+    program.kd = gl.getUniformLocation (program, 'kd');
+    program.ks = gl.getUniformLocation (program, 'ks');
+    program.ke = gl.getUniformLocation (program, 'ke');
 
     return program;
 }
@@ -283,6 +313,9 @@ function init() {
 
     // Read, compile, and link your shaders
     initPrograms();
+
+    // set up Phong parameters
+    setUpPhong(sphereGlobeProgram);
 
     // create and bind your current object
     createShapes();
