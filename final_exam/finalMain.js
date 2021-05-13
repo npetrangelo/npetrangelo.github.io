@@ -95,7 +95,7 @@ function setUpPhong(program) {
     // they are set in setUpCamera()
     //
     gl.uniform3fv(program.ambientLight, [0.2, 0.2, 0.2]);
-    gl.uniform3fv(program.lightPosition, [1.0, 2.0, 0.0]);
+    gl.uniform3fv(program.lightPosition, [1.0, 1.0, 0.0]);
     gl.uniform3fv(program.lightColor, [1.0, 1.0, 1.0]);
     gl.uniform3fv(program.specHighlightColor, [1.0, 1.0, 1.0]);
     gl.uniform1f(program.ka, 1.0);
