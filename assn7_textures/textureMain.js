@@ -291,13 +291,10 @@ function init() {
 
     gl.cullFace(gl.BACK);
     gl.frontFace(gl.CCW);
-    gl.clearColor(0.0, 0.0, 0.0, 1.0)
-    gl.depthFunc(gl.LEQUAL)
-    gl.clearDepth(1.0)
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.depthFunc(gl.LEQUAL);
+    gl.clearDepth(1.0);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-
-    // deal with keypress
-    window.addEventListener('keydown', gotKey, false);
 
     // Read, compile, and link your shaders
     sphereGlobeProgram = initProgram('sphereMap-V', 'sphereMap-F');

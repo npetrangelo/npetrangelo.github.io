@@ -5,12 +5,17 @@
 let gl;
 
 // GLSL programs
+let sphereGlobeProgram;
 
 // VAOs for the objects
+let mySphere = null;
 
 // textures
+let sphereTexture;
 
 // rotation
+let angles = [100.0, 0.0, 0.0];
+let angleInc = 5.0;
 
 //
 // create shapes and VAOs for objects.
@@ -18,6 +23,9 @@ let gl;
 // upon the vertex attributes found in each program
 //
 function createShapes() {
+    // the sphere
+    mySphere = new Sphere(20, 20);
+    mySphere.VAO = bindVAO(mySphere, sphereGlobeProgram);
 }
 
 
@@ -67,28 +75,24 @@ function setUpTexture(imageId) {
 // set up as well.
 //
 function setUpTextures() {
-
-    // flip Y for WebGL
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-
-    // get some texture space from the gpu
-
-    // load the actual image
-    var worldImage = document.getElementById('')
-    worldImage.crossOrigin = "";
-
-    // bind the texture so we can perform operations on it
-
-    // load the texture data
-
-    // set texturing parameters
+    sphereTexture = setUpTexture("luxo");
 }
 
 //
 //  This function draws all of the shapes required for your scene
 //
 function drawShapes() {
+    gl.useProgram(sphereGlobeProgram);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, sphereTexture);
+    gl.uniform1i(sphereGlobeProgram.uTheTexture, 0);
 
+    // set up rotation uniform
+    gl.uniform3fv(sphereGlobeProgram.uTheta, new Float32Array(angles));
+
+    //Bind the VAO and draw
+    gl.bindVertexArray(mySphere.VAO);
+    gl.drawElements(gl.TRIANGLES, mySphere.indices.length, gl.UNSIGNED_SHORT, 0);
 }
 
 //
@@ -101,7 +105,10 @@ function drawShapes() {
 // based on the in variables to the shaders. This will vary from program to program.
 //
 function initPrograms() {
+    // Read, compile, and link your shaders
+    sphereGlobeProgram = initProgram('textureMap-V', 'textureMap-F');
 
+    setUpTextures();
 }
 
 // creates a VAO and returns its ID
@@ -118,6 +125,11 @@ function bindVAO(shape, program) {
     gl.vertexAttribPointer(program.aVertexPosition, 3, gl.FLOAT, false, 0, 0);
 
     // add code for any additional vertex attribute
+    let uvBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, uvBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(shape.uv), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(program.aUV);
+    gl.vertexAttribPointer(program.aUV, 2, gl.FLOAT, false, 0, 0);
 
 
     // Setting up the IBO
@@ -196,6 +208,18 @@ function initProgram(vertex_id, fragment_id) {
         return null;
     }
 
+    // Use this program instance
+    gl.useProgram(program);
+    // We attach the location of these shader values to the program instance
+    // for easy access later in the code
+    program.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
+    program.aUV = gl.getAttribLocation(program, 'aUV');
+
+    // uniforms - you will need to add references for any additional
+    // uniforms that you add to your shaders
+    program.uTheTexture = gl.getUniformLocation(program, 'theTexture');
+    program.uTheta = gl.getUniformLocation(program, 'theta');
+
     return program;
 }
 
@@ -237,9 +261,6 @@ function init() {
         return null;
     }
 
-    // deal with keypress
-    window.addEventListener('keydown', gotKey, false);
-
     // Set the clear color to be black
     gl.clearColor(0, 0, 0, 1);
 
@@ -249,9 +270,11 @@ function init() {
 
     gl.cullFace(gl.BACK);
     gl.frontFace(gl.CCW);
-    gl.clearColor(0.0, 0.0, 0.0, 1.0)
-    gl.depthFunc(gl.LEQUAL)
-    gl.clearDepth(1.0)
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.depthFunc(gl.LEQUAL);
+    gl.clearDepth(1.0);
+    // flip Y for WebGL
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
     // Read, compile, and link your shaders
     initPrograms();

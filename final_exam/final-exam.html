@@ -45,11 +45,33 @@
 
         void main()
         {
+            // Compute the sines and cosines of each rotation
+            // about each axis
+            vec3 angles = radians( theta );
+            vec3 c = cos( angles );
+            vec3 s = sin( angles );
+
+            // rotation matrices
+            mat4 rx = mat4 ( 1.0,  0.0,  0.0,  0.0,
+            0.0,  c.x,  s.x,  0.0,
+            0.0, -s.x,  c.x,  0.0,
+            0.0,  0.0,  0.0,  1.0 );
+
+            mat4 ry = mat4 ( c.y,  0.0, -s.y,  0.0,
+            0.0,  1.0,  0.0,  0.0,
+            s.y,  0.0,  c.y,  0.0,
+            0.0,  0.0,  0.0,  1.0 );
+
+            mat4 rz = mat4 ( c.z,  s.z,  0.0,  0.0,
+            -s.z,  c.z,  0.0,  0.0,
+            0.0,  0.0,  1.0,  0.0,
+            0.0,  0.0,  0.0,  1.0 );
+
             // pass uvs to fragment shader
             theUV = aUV;
 
             // transform vertex to clip space
-            gl_Position = vec4 (aVertexPosition, 1.0);
+            gl_Position = rz * ry * rx * vec4 (aVertexPosition, 1.0);
         }
     </script>
 
@@ -90,7 +112,7 @@
     <script type="text/javascript" src="./event.js"></script>
 
     <!-- texture images -->
-    <img id="world-texture" src="2_no_clouds_8k.jpg" style="display: none;"> </img>
+    <img id="luxo" src="luxo-jr-ball-uv-300x.jpeg" style="display: none;"> </img>
 
     <script type="text/javascript">
         // Call init once the webpage has loaded
