@@ -36,6 +36,29 @@ function setUpCamera(program) {
 
 }
 
+function setUpTexture(imageId) {
+    // get some texture space from the gpu
+    let texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+
+    // load the actual image
+    let image = document.getElementById(imageId);
+    image.crossOrigin = "";
+
+    image.onload = () => {
+        // bind the texture so we can perform operations on it
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+
+        // load the texture data
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, image.width, image.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, image);
+
+        // set texturing parameters
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    }
+    return texture;
+}
 
 //
 // load up the textures you will use in the shader(s)
